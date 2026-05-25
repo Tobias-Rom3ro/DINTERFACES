@@ -1,0 +1,402 @@
+\documentclass[11pt]{article}
+
+% ─── Idioma y codificación ───────────────────────────────────────────────────
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ─── Fuente estilo Palatino (igual que fphw) ─────────────────────────────────
+\usepackage{mathpazo}
+
+% ─── Márgenes ────────────────────────────────────────────────────────────────
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm, headheight=14pt}
+
+% ─── Gráficos ────────────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{float}
+
+% ─── Matemático ──────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+
+% ─── TikZ ────────────────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+% ─── Espaciado ───────────────────────────────────────────────────────────────
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ─── Colores ─────────────────────────────────────────────────────────────────
+\usepackage{xcolor}
+\definecolor{uniblue}{RGB}{0, 56, 120}
+\definecolor{softgray}{RGB}{245, 245, 245}
+\definecolor{midgray}{RGB}{180, 180, 180}
+
+% ─── Encabezado y pie ────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% ─── Secciones ───────────────────────────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}[block]
+  {\normalsize\bfseries\color{uniblue}\filcenter}
+  {\thesection.}{.3cm}{}
+\titleformat{\subsection}[runin]
+  {\bfseries\color{uniblue}}{\thesubsection.}{1mm}{}[.\quad]
+
+% ─── Abstract ────────────────────────────────────────────────────────────────
+\usepackage{abstract}
+\renewcommand{\abstractnamefont}{\color{uniblue}\bfseries\normalsize}
+\renewcommand{\abstracttextfont}{\small\itshape}
+\setlength{\absleftindent}{0.5cm}
+\setlength{\absrightindent}{0.5cm}
+
+% ─── Cajas ───────────────────────────────────────────────────────────────────
+\usepackage{mdframed}
+
+% ─── Captions ────────────────────────────────────────────────────────────────
+\usepackage{caption}
+\captionsetup{font=small, labelfont={bf,color=uniblue}, labelsep=period}
+
+% ─── Hipervínculos ───────────────────────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uniblue, urlcolor=uniblue, citecolor=uniblue}
+
+% ─── Íconos de correo (opcional, comentar si no compila) ─────────────────────
+%\usepackage{fontawesome5}
+\usepackage{booktabs}
+\usepackage{enumitem}
+% ──────────────────────────────────────────────────────────────────────────────
+%  ENCABEZADO Y PIE
+% ──────────────────────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\itshape\color{uniblue}
+  Diseño de Interfaces (Grupo \#01) --- Arquitectura de Información · Elderly Care}
+\fancyhead[R]{\footnotesize\color{uniblue}\thepage\ /\ \pageref{LastPage}}
+\fancyfoot[L]{\footnotesize\itshape\color{gray}
+  Universidad del Magdalena · Facultad de Ingeniería}
+\fancyfoot[R]{\footnotesize\itshape\color{gray}
+  Romero · Roa · Lozano}
+
+% ──────────────────────────────────────────────────────────────────────────────
+%  INICIO DEL DOCUMENTO
+% ──────────────────────────────────────────────────────────────────────────────
+\begin{document}
+\thispagestyle{plain}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  BLOQUE DE TÍTULO  (inspirado en fphw: institución · líneas · metadatos)
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{center}
+
+  % Institución en small caps (igual que fphw)
+  {\scshape\color{uniblue} \textbf{Universidad del Magdalena}} \\[2pt]
+  {\small\scshape Facultad de Ingeniería --- Ingeniería de Sistemas}
+
+  \vspace{10pt}
+  {\color{uniblue}\rule{\linewidth}{1.5pt}}
+  \vspace{6pt}
+
+  % Título
+  {\LARGE\bfseries
+    Definición de la Arquitectura de Información\\[5pt]
+    para la Aplicación \textit{Elderly Care}.\\[5pt]
+  }
+
+  \vspace{8pt}
+  {\color{uniblue}\rule{\linewidth}{0.6pt}}
+  \vspace{10pt}
+
+  % ─── Tabla de autores ────────────────────────────────────────────────────
+  \begin{tabular}{ccc}
+    \textbf{Tobías Romero} &
+    \textbf{Jenifer Roa} &
+    \textbf{Danna Lozano} \\[2pt]
+    {\small 2021214011} &
+    {\small 2022214006} &
+    {\small 2022241016} \\[2pt]
+    {\small\ttfamily\href{mailto:taromero@unimagdalena.edu.co}{taromero@unimagdalena.edu.co}} &
+    {\small\ttfamily\href{mailto:jtroa@unimagdalena.edu.co}{jtroa@unimagdalena.edu.co}} &
+    {\small\ttfamily\href{mailto:dannalozanocc@unimagdalena.edu.co}{dannalozanocc@unimagdalena.edu.co}}
+  \end{tabular}
+
+  \vspace{10pt}
+
+  % ─── Metadatos del curso ────────────────────────────────────────────────
+  \noindent\colorbox{softgray}{%
+    \parbox{0.92\linewidth}{%
+      \centering\vspace{4pt}
+      {\small
+        \textbf{\color{uniblue}Curso:} Diseño de Interfaces (Grupo \#01)
+        \quad\textbf{\color{uniblue}·}\quad
+        \textbf{\color{uniblue}Fecha de entrega:} 20 de abril de 2025
+      }
+      \vspace{4pt}
+    }%
+  }
+
+  \vspace{10pt}
+  {\color{uniblue}\rule{\linewidth}{1.5pt}}
+
+\end{center}
+
+\vspace{4pt}
+
+% ─── Abstract ────────────────────────────────────────────────────────────────
+\begin{abstract}
+El diseño de la arquitectura de información en aplicaciones de salud representa un desafío crítico, especialmente cuando se orienta a usuarios con responsabilidades de cuidado. Este trabajo presenta la aplicación de la técnica de card sorting mixto para definir la estructura de navegación de la aplicación Elderly Care, específicamente desde el rol del cuidador.
+
+A partir de la participación de diez usuarios, se identificaron patrones consistentes en la organización de las funcionalidades, destacando la centralidad de los conceptos de pacientes, medicamentos y alertas. Los resultados evidencian además ambigüedades conceptuales en torno al seguimiento del tratamiento, lo que motivó la reorganización de dichas funciones.
+
+Como resultado, se propone una arquitectura de información alineada con el modelo mental de los usuarios en su rol de cuidadores, con el objetivo de mejorar la usabilidad y facilitar la supervisión del tratamiento.
+\end{abstract}
+
+\noindent
+\begin{mdframed}[backgroundcolor=softgray, linecolor=uniblue, linewidth=0.7pt,
+    innertopmargin=5pt, innerbottommargin=5pt, innerleftmargin=8pt, innerrightmargin=8pt]
+  \small\textbf{\color{uniblue}Palabras clave:}\ arquitectura de información, card sorting,
+  experiencia de usuario, aplicaciones de salud, usabilidad.
+\end{mdframed}
+
+\vspace{6pt}
+\vspace{1cm}
+\noindent{\color{uniblue}\rule{\linewidth}{1pt}}
+\vspace{0.2cm}
+% ══════════════════════════════════════════════════════════════════════════════
+%  CUERPO DEL ARTÍCULO
+% ══════════════════════════════════════════════════════════════════════════════
+\newpage
+\section{Introducción}
+
+El diseño de sistemas interactivos centrados en el usuario requiere comprender cómo las personas
+organizan y acceden a la información. En el ámbito de las aplicaciones de salud, esta necesidad
+se intensifica, dado que una estructura confusa puede afectar directamente el seguimiento adecuado
+de tratamientos médicos.
+
+Elderly Care es una aplicación móvil diseñada para apoyar la gestión de medicamentos y permitir el seguimiento remoto del tratamiento de pacientes. En este estudio, el enfoque se centra específicamente en el rol del cuidador, quien actúa como responsable de supervisar el cumplimiento de la medicación y tomar decisiones informadas a partir del estado del paciente.
+
+Para abordar este problema, se empleó la técnica de card sorting, la cual permite explorar cómo
+los usuarios agrupan y categorizan funcionalidades, proporcionando una base empírica para la toma
+de decisiones de diseño.
+
+\section{Metodología}
+
+El estudio se desarrolló mediante la técnica de \textbf{card sorting mixto}, combinando elementos
+de clasificación abierta y guiada. Los participantes pudieron agrupar las tarjetas según su
+criterio, pero dentro de un conjunto de categorías propuestas, lo que permitió obtener tanto
+estructura como validación conceptual.
+
+La actividad se llevó a cabo utilizando la herramienta \textit{\textbf{UXtweak}} en modalidad remota.
+Participaron \textbf{diez estudiantes universitarios}, con un tiempo promedio de realización de
+3 minutos y 53 segundos.
+
+Las tarjetas representaban \textbf{dieciocho funcionalidades} del sistema, cubriendo aspectos
+como la gestión de pacientes, administración de medicamentos, programación de tratamientos,
+seguimiento del cumplimiento, alertas y servicios asociados.
+
+\vspace{6pt}
+\noindent Las \textbf{6 categorías} propuestas inicialmente como estructura guía fueron:
+
+\begin{center}
+\small
+\begin{tabular}{clp{11cm}}
+  \toprule
+  \textbf{\color{uniblue}\#} &
+  \textbf{\color{uniblue}Categoría} &
+  \textbf{\color{uniblue}Tarjetas asociadas} \\
+  \midrule
+  1 & Gestión de pacientes &
+    Agregar un paciente · Editar información de un paciente ·
+    Eliminar un paciente · Ver la información de un paciente \\[4pt]
+  2 & Gestión de medicamentos &
+    Registrar un medicamento para un paciente · Editar un medicamento ·
+    Eliminar un medicamento · Ver lista de medicamentos de un paciente \\[4pt]
+  3 & Control de medicación &
+    Programar horarios de medicamentos · Recibir recordatorios de
+    medicación · Confirmar que el paciente tomó el medicamento \\[4pt]
+  4 & Seguimiento &
+    Ver historial de medicamentos del paciente · Revisar el estado de
+    cumplimiento del paciente · Identificar medicamentos no tomados \\[4pt]
+  5 & Alertas y comunicación &
+    Recibir alerta por dosis omitida · Notificar a un familiar ·
+    Revisar alertas del sistema \\[4pt]
+  6 & Servicios &
+    Solicitar medicamentos a domicilio · Programar entrega de
+    medicamentos \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+
+\section{Resultados}
+
+El análisis de los datos obtenidos a través del card sorting permitió identificar patrones consistentes en la forma en que los participantes agrupan las funcionalidades del sistema. Estos patrones se reflejan tanto en la matriz de clasificación como en la matriz de similitud y los dendrogramas generados.
+
+\subsection{Matriz de clasificación}
+La matriz de clasificación evidencia un alto nivel de acuerdo en las funcionalidades relacionadas con la gestión de pacientes. Acciones como agregar, editar, eliminar y visualizar información fueron agrupadas de manera consistente por la mayoría de los participantes, lo que indica que estas tareas son percibidas como parte de un mismo dominio funcional claramente definido.
+
+En el caso de la gestión de medicamentos, también se observa un grado importante de consistencia, especialmente en las acciones de edición y eliminación. Sin embargo, algunas funcionalidades asociadas a la programación y control de la medicación presentan una distribución más dispersa, lo que sugiere menor claridad conceptual.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{matriz.png}
+\caption{Asignación de tarjetas a categorías}
+\end{figure}
+
+\newpage
+\subsection{Matriz de similitud}
+La matriz de similitud permite identificar relaciones fuertes entre tarjetas específicas. Se destacan tres agrupaciones principales:
+\begin{itemize}[noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt]
+    \item Funcionalidades relacionadas con pacientes, con alta co-ocurrencia.
+    \item Funcionalidades de administración de medicamentos.
+    \item Funciones asociadas a alertas y notificaciones.
+\end{itemize}
+Estas agrupaciones refuerzan la idea de que los usuarios estructuran el sistema en torno a componentes concretos y fácilmente identificables.
+Por otro lado, las funcionalidades relacionadas con el seguimiento del tratamiento muestran niveles de similitud más bajos entre sí, lo que indica una menor cohesión conceptual.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.95\textwidth]{similitud.png}
+\caption{Relación de similitud entre tarjetas}
+\end{figure}
+
+
+\newpage
+\subsection{Dendrogramas}
+Los dendrogramas obtenidos mediante los métodos BMM y AAM confirman la existencia de estructuras jerárquicas claras. En ambos casos se observan tres núcleos principales: pacientes, medicamentos y un conjunto híbrido que agrupa funciones de seguimiento y alertas.
+
+Este último grupo presenta una mayor variabilidad interna, lo que evidencia que los usuarios no perciben estas funcionalidades como un bloque homogéneo.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{dendrograma_bmm.png}
+\caption{Dendrograma --- Best Merge Method}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{dendrograma_aam.png}
+\caption{Dendrograma --- Actual Agreement Method}
+\end{figure}
+
+
+
+\newpage
+\section{Discusión}
+
+Los resultados del estudio permiten identificar cómo los usuarios conceptualizan la estructura funcional de la aplicación, revelando tanto patrones consistentes como zonas de ambigüedad.
+
+En primer lugar, la alta consistencia en la agrupación de funcionalidades relacionadas con pacientes y medicamentos sugiere que los usuarios estructuran el sistema en torno a entidades principales. Estas entidades funcionan como anclas cognitivas, facilitando la organización de la información y el acceso a las funciones del sistema. Este comportamiento es consistente con principios de arquitectura de información, donde los objetos principales del dominio guían la estructura de navegación.
+
+En contraste, las funcionalidades relacionadas con el seguimiento del tratamiento presentan una mayor dispersión en su clasificación. Este comportamiento puede interpretarse como una falta de diferenciación conceptual entre acciones de monitoreo, control y verificación. Desde la perspectiva del usuario, estas tareas forman parte de un mismo proceso continuo, lo que explica su asignación inconsistente entre distintas categorías.
+
+Asimismo, las alertas y notificaciones emergen como un componente transversal del sistema. Si bien algunos participantes las agrupan como una categoría independiente, otros las asocian directamente con el seguimiento del tratamiento. Esto sugiere que las alertas no son percibidas únicamente como un módulo aislado, sino como un mecanismo de soporte dentro del flujo de cuidado.
+
+Estos hallazgos tienen implicaciones directas en el diseño de la arquitectura. En particular, evidencian la necesidad de simplificar la estructura conceptual del sistema, evitando divisiones que no sean significativas para los usuarios. La separación entre control y seguimiento, aunque válida desde una perspectiva técnica, no resulta intuitiva desde el punto de vista del usuario final.
+
+En este sentido, la unificación de estas funcionalidades en una categoría más amplia, como “Tratamiento”, responde a una estrategia de reducción de la carga cognitiva y mejora de la encontrabilidad de la información.
+
+\section{Propuesta de Arquitectura de Información}
+
+Con base en los resultados obtenidos, se propone una estructura de navegación compuesta por seis
+secciones principales: Pacientes, Medicamentos, Tratamiento, Alertas, Comunicación y Servicios.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  grow=down,
+  level 1/.style={sibling distance=2.6cm, level distance=1.8cm},
+  every node/.style={
+    draw=uniblue, rounded corners=3pt, align=center,
+    font=\small\bfseries, text=uniblue,
+    fill=softgray, minimum width=2.2cm, minimum height=0.65cm,
+    inner sep=3pt
+  },
+  edge from parent/.style={draw=uniblue!50, thick}
+]
+\node[fill=uniblue, text=white, minimum width=3cm, rounded corners=3pt]
+  {\normalsize Elderly Care}
+  child { node {Pacientes} }
+  child { node {Medica-\\mentos} }
+  child { node {Trata-\\miento} }
+  child { node {Alertas} }
+  child { node {Comuni-\\cación} }
+  child { node {Servicios} };
+\end{tikzpicture}
+\caption{Arquitectura de navegación propuesta}
+\end{figure}
+\vspace{8pt}
+
+\noindent A continuación se describe el contenido previsto para cada sección de la arquitectura:
+
+\noindent
+\begin{mdframed}[backgroundcolor=softgray, linecolor=uniblue, linewidth=0.7pt,
+    innertopmargin=8pt, innerbottommargin=8pt, innerleftmargin=10pt, innerrightmargin=10pt]
+\small
+\begin{description}[leftmargin=0pt, labelwidth=!, labelsep=0.4em, itemsep=5pt]
+
+  \item[\color{uniblue}Pacientes.]
+  Centraliza la gestión del perfil de cada persona bajo cuidado. Incluye
+  funciones para agregar, editar, eliminar y consultar la información personal
+  y médica de los pacientes registrados en el sistema.
+
+  \item[\color{uniblue}Medicamentos.]
+  Agrupa todo lo relacionado con el catálogo de medicamentos asignados a
+  cada paciente: registro, edición, eliminación y consulta del listado completo
+  de fármacos activos o históricos.
+
+  \item[\color{uniblue}Tratamiento.]
+  Unifica las funciones de control y seguimiento de la medicación, dada la
+  ambigüedad conceptual identificada entre ambas categorías. Comprende la
+  programación de horarios, la confirmación de tomas, la revisión del estado
+  de cumplimiento, el historial de medicamentos y la identificación de dosis
+  omitidas.
+
+  \item[\color{uniblue}Alertas.]
+  Concentra los mecanismos de notificación activa del sistema: alertas por
+  dosis omitida, recordatorios de medicación y el panel de revisión de alertas
+  generadas, permitiendo al cuidador reaccionar oportunamente ante cualquier
+  incumplimiento.
+
+  \item[\color{uniblue}Comunicación.]
+  Facilita el contacto entre el cuidador y la red de apoyo del paciente.
+  Incluye la opción de notificar a un familiar ante situaciones relevantes,
+  y abre la puerta a futuros canales de comunicación directa dentro de la
+  aplicación.
+
+  \item[\color{uniblue}Servicios.]
+  Agrupa funcionalidades de valor agregado externas al ciclo de medicación
+  directo, como la solicitud de medicamentos a domicilio y la programación
+  de entregas, integrando así la aplicación con el ecosistema de atención
+  en salud.
+
+\end{description}
+\end{mdframed}
+
+\section{Limitaciones}
+
+El estudio presenta limitaciones relacionadas tanto con la herramienta como con la muestra de
+participantes.
+
+El uso de la versión gratuita de \textit{UXtweak} restringió el número de usuarios que podían participar en la investigación, el número de cards y categorías a crear y las capacidades de análisis disponibles. Asimismo, la muestra estuvo compuesta únicamente por estudiantes universitarios, lo cual no representa completamente el perfil de los usuarios objetivo.
+
+En este sentido, habría sido pertinente incluir cuidadores reales, como personal de salud o familiares responsables del cuidado de adultos mayores, con el fin de obtener resultados más representativos.
+
+\section{Conclusión}
+
+El presente estudio permitió explorar la forma en que los usuarios organizan mentalmente las funcionalidades de la aplicación Elderly Care mediante la técnica de card sorting mixto. Los resultados obtenidos evidencian la existencia de estructuras conceptuales claras en torno a las entidades principales del sistema, particularmente pacientes y medicamentos.
+\newpage
+Asimismo, se identificaron áreas de ambigüedad, especialmente en las funcionalidades relacionadas con el seguimiento del tratamiento. Este hallazgo resalta la importancia de alinear la arquitectura de información con el modelo mental de los usuarios, priorizando la claridad sobre la precisión técnica.
+
+La propuesta de arquitectura desarrollada a partir de estos resultados busca integrar dichas observaciones, consolidando las funcionalidades en categorías coherentes y fácilmente comprensibles. En particular, la unificación de las funciones de control y seguimiento en la categoría ``Tratamiento'' responde directamente a los patrones observados en el estudio.
+
+Si bien los resultados constituyen una base sólida para el diseño de la aplicación, se reconoce la necesidad de validarlos en futuros estudios con usuarios que representen de manera más fiel el contexto real de uso.
+
+% ─── Línea de cierre ─────────────────────────────────────────────────────────
+
+
+\end{document}

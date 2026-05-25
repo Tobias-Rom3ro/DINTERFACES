@@ -1,0 +1,533 @@
+\documentclass[12pt,letterpaper]{article}
+
+% -------------------------------------------------
+% PAQUETES
+% -------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{array,tabularx,booktabs,multirow,makecell}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{microtype}
+
+% -------------------------------------------------
+% CONFIGURACIÓN GENERAL
+% -------------------------------------------------
+\geometry{margin=2.5cm}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist[itemize]{leftmargin=1.2cm, itemsep=0.25em, topsep=0.25em}
+
+\definecolor{uniBlue}{RGB}{23, 63, 120}
+\definecolor{lightBlue}{RGB}{234, 241, 248}
+\definecolor{softGray}{RGB}{245, 245, 245}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uniBlue,
+    urlcolor=uniBlue,
+    citecolor=uniBlue,
+    pdftitle={Plan DCU para el Rediseño de la Plataforma Web Tuboleta},
+    pdfauthor={Stiven Rafael Melendez Tovar, Dania Valentina Sarmiento Galán, Kevin Leonel Torres Montañez}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Plan DCU para el Rediseño de Tuboleta}
+\fancyhead[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{uniBlue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{uniBlue}}
+  {\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{0.6em}{}
+
+\newcommand{\hlineblue}{\textcolor{uniBlue}{\rule{\linewidth}{1pt}}}
+
+% -------------------------------------------------
+% DOCUMENTO
+% -------------------------------------------------
+\begin{document}
+\pagenumbering{gobble}
+
+% -------------------------------------------------
+% PORTADA + RESUMEN
+% -------------------------------------------------
+\begin{titlepage}
+\centering
+
+{\large\bfseries UNIVERSIDAD DEL MAGDALENA\par}
+\vspace{0.15cm}
+{\normalsize\bfseries FACULTAD DE INGENIERÍA --- INGENIERÍA DE SISTEMAS\par}
+
+\vspace{0.9cm}
+\hlineblue
+\vspace{1.2cm}
+
+{\LARGE\bfseries Plan DCU para el\par}
+\vspace{0.2cm}
+{\LARGE\bfseries Rediseño de la Plataforma Web \textit{Tuboleta}\par}
+
+\vspace{1.2cm}
+\hlineblue
+\vspace{1.0cm}
+
+\begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+\textbf{Stiven Rafael Melendez Tovar} & \textbf{Dania Valentina Sarmiento Galán} & \textbf{Kevin Leonel Torres Montañez} \\
+\end{tabularx}
+
+\vspace{0.55cm}
+\begin{center}
+\fcolorbox{gray!45}{softGray}{%
+\parbox{0.82\linewidth}{\centering
+\textbf{Universidad del Magdalena}\\
+Facultad de Ingeniería, Ingeniería de Sistemas\\
+Santa Marta, Colombia\\
+17 de noviembre de 2025
+}}
+\end{center}
+
+\vspace{0.9cm}
+\hlineblue
+
+\vspace{0.8cm}
+
+\justifying
+\fcolorbox{uniBlue}{white}{%
+\parbox{0.92\linewidth}{%
+\textbf{Resumen ---} El presente documento presenta el plan de trabajo para el rediseño de la plataforma Tuboleta, a partir de problemas de usabilidad, percepción estética negativa y baja adopción por parte de los usuarios. La propuesta adopta la metodología de Diseño Centrado en el Usuario (DCU) como eje del proceso, organizando el trabajo en tres fases iterativas: análisis, diseño y evaluación. Para ello se emplean técnicas como Focus Group, entrevistas individuales, método 6-3-5, prototipado interactivo, test de usuario y evaluación heurística. El objetivo es identificar problemas reales de interacción, transformar los hallazgos en soluciones de diseño y validar el rediseño con usuarios y expertos antes de su implementación.
+}}
+
+\vspace{0.45cm}
+\fcolorbox{uniBlue}{white}{%
+\parbox{0.92\linewidth}{%
+\textbf{Palabras clave ---} Diseño Centrado en el Usuario, usabilidad, experiencia de usuario, rediseño de interfaces, Tuboleta.
+}}
+
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+% -------------------------------------------------
+% 1. CONTEXTUALIZACIÓN Y DIAGNÓSTICO
+% -------------------------------------------------
+\section{Contextualización y diagnóstico del problema}
+
+Tuboleta es una plataforma digital colombiana especializada en la venta de entradas para conciertos, eventos deportivos, espectáculos culturales y diferentes actividades de entretenimiento. Debido a la naturaleza de sus servicios, la plataforma depende en gran medida de la experiencia de usuario, ya que procesos como la búsqueda de eventos, la selección de entradas y el pago deben realizarse de forma clara, rápida y confiable.
+
+A pesar de su reconocimiento y alcance, la plataforma presenta actualmente diferentes dificultades relacionadas con usabilidad, claridad visual y experiencia de interacción. Diversos usuarios manifiestan problemas durante el proceso de compra, confusión en la navegación, dificultades para identificar información relevante y una percepción estética poco moderna en comparación con otras plataformas digitales del sector.
+
+Estas dificultades no solo afectan la experiencia de los usuarios, sino que también impactan directamente la percepción de confianza, la satisfacción general y la efectividad del proceso de compra. En consecuencia, problemas como el abandono de tareas, la frustración durante la navegación y la complejidad en ciertas interacciones pueden influir negativamente en la adopción de la plataforma y en la percepción general del servicio.
+
+Desde una perspectiva de Diseño Centrado en el Usuario (DCU), estas problemáticas representan una oportunidad para replantear la experiencia completa de uso de Tuboleta. Más allá de realizar cambios únicamente visuales, el enfoque propuesto busca comprender de manera profunda cómo interactúan los usuarios con la plataforma, cuáles son sus necesidades reales y en qué puntos del recorrido se generan fricciones que afectan la experiencia.
+
+A partir de este contexto, el presente documento propone un plan de trabajo basado en la metodología DCU, estructurado en fases iterativas de análisis, diseño y evaluación. El propósito es construir una propuesta de rediseño orientada a mejorar la usabilidad, fortalecer la confianza del usuario y optimizar la experiencia general dentro de la plataforma.
+
+En particular, el proyecto busca abordar problemáticas como:
+
+\begin{itemize}
+    \item dificultades para encontrar eventos y navegar por la plataforma;
+    \item confusión durante la selección de entradas y el proceso de compra;
+    \item percepción visual poco clara o desactualizada;
+    \item baja confianza durante el proceso de pago;
+    \item abandono de tareas importantes dentro del flujo de interacción;
+    \item inconsistencias en la experiencia entre diferentes dispositivos.
+\end{itemize}
+
+% -------------------------------------------------
+% 2. OBJETIVOS
+% -------------------------------------------------
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Diseñar un plan de trabajo basado en la metodología de Diseño Centrado en el Usuario (DCU) para el rediseño de la plataforma Tuboleta, con el fin de mejorar su usabilidad, experiencia de usuario y percepción general.
+
+\subsection{Objetivos específicos}
+\begin{itemize}
+    \item Identificar los principales problemas de interacción presentes en la plataforma actual.
+    \item Comprender las necesidades, expectativas y comportamientos de los usuarios.
+    \item Proponer soluciones de diseño coherentes con los hallazgos del análisis.
+    \item Desarrollar un prototipo interactivo que represente los flujos principales del sistema.
+    \item Validar las soluciones mediante técnicas de evaluación con usuarios y expertos.
+\end{itemize}
+
+% -------------------------------------------------
+% 3. FUNDAMENTACIÓN DCU
+% -------------------------------------------------
+\section{Fundamentación del Diseño Centrado en el Usuario}
+
+\subsection{¿Qué es el DCU?}
+
+El Diseño Centrado en el Usuario (DCU) es una metodología que sitúa al usuario en el centro del proceso de diseño. Su propósito es crear productos que respondan realmente a las necesidades, expectativas y comportamientos de las personas que los utilizan. A diferencia de los enfoques tradicionales, donde las decisiones se basan principalmente en criterios técnicos o de negocio, el DCU parte del conocimiento profundo del usuario, sus objetivos y sus dificultades.
+
+Esta metodología se desarrolla de manera iterativa: primero se diseña, luego se prueba con usuarios reales y finalmente se mejora en función de los resultados obtenidos. Así, cada decisión se apoya en evidencia y no en suposiciones. El objetivo final es lograr productos útiles, usables y satisfactorios.
+
+\subsection{¿Qué aporta el DCU al problema de Tuboleta?}
+
+Aplicar DCU en Tuboleta permite abordar de forma más precisa los problemas de usabilidad, confusión, estética y falta de confianza observados en la plataforma. El enfoque permite identificar qué está fallando realmente desde la perspectiva del usuario, no solo desde el punto de vista técnico.
+
+Además, facilita detectar en qué parte del proceso de compra se produce el abandono, qué mensajes generan incertidumbre y qué elementos visuales afectan la navegación. Esto reduce el riesgo de invertir esfuerzos en cambios poco útiles y aumenta la probabilidad de generar mejoras reales en la experiencia del cliente.
+
+\subsection{¿Por qué seguir esta forma de trabajo?}
+
+El DCU ofrece un proceso estructurado y comprobado para detectar problemas de interacción, probar alternativas con usuarios reales y medir la efectividad de las soluciones. Además, mejora la comunicación entre diseño, desarrollo y negocio, ya que permite tomar decisiones basadas en evidencia y no en opiniones aisladas.
+
+\subsection{Principios del DCU aplicados al rediseño}
+
+\subsubsection{1. Diseño basado en el entendimiento explícito de usuarios, actividades y entornos}
+
+Para mejorar la experiencia en Tuboleta es necesario comprender cómo, cuándo y por qué los usuarios compran boletos. Analizar contextos como el uso desde dispositivos móviles, la búsqueda de eventos y la forma de pago permite diseñar soluciones acordes con hábitos y expectativas reales.
+
+\subsubsection{2. Los usuarios están involucrados a lo largo del proceso de diseño}
+
+La voz de los usuarios se incorpora desde las primeras etapas del proyecto mediante entrevistas, sesiones grupales y pruebas de usabilidad. Esto permite que las decisiones no se basen en supuestos, sino en experiencias concretas.
+
+\subsubsection{3. El diseño está dirigido y ajustado por evaluaciones centradas en el usuario}
+
+Cada versión o mejora será probada con usuarios reales antes de su implementación definitiva. Así se identifican problemas de comprensión, navegación o accesibilidad y se ajusta el diseño a tiempo.
+
+\subsubsection{4. El proceso es iterativo}
+
+El rediseño no se entiende como un proceso lineal, sino como un ciclo de mejora continua. Cada prueba genera retroalimentación que se incorpora a la siguiente versión del diseño.
+
+\subsubsection{5. El diseño responde a la experiencia completa del usuario}
+
+No se trata solo de optimizar una interfaz, sino de acompañar al usuario durante todo su recorrido: búsqueda del evento, selección de entradas, pago, confirmación y seguimiento posterior.
+
+\subsubsection{6. El equipo de diseño incluye perfiles y perspectivas multidisciplinares}
+
+El proyecto integra perfiles de experiencia de usuario, diseño visual, comunicación y desarrollo web. Esta diversidad permite una visión más completa y coherente de la solución.
+
+\subsection{¿Por qué nuestro equipo es el más indicado para realizar el rediseño?}
+
+Nuestro equipo une una mirada humana, analítica y estratégica del diseño. Contamos con la capacidad de escuchar los problemas de los usuarios y convertirlos en soluciones visibles y medibles, manteniendo un equilibrio entre los objetivos del negocio y las expectativas del público.
+
+Nuestro compromiso no es únicamente rediseñar una interfaz, sino reconstruir la experiencia completa de compra, de forma que Tuboleta recupere la confianza de sus usuarios y consolide una percepción más positiva de la plataforma.
+
+% -------------------------------------------------
+% 4. PLAN DE TRABAJO
+% -------------------------------------------------
+\section{Plan de trabajo DCU}
+
+A continuación se presenta el plan de trabajo estructurado en tres fases iterativas: análisis, diseño y evaluación. En cada actividad se incluye su descripción, el procedimiento de aplicación, la justificación y los entregables esperados.
+
+% ---------------- FASE 1 ----------------
+\subsection{Fase I. Análisis}
+
+\subsubsection{Objetivo de la fase}
+Identificar las causas reales detrás de las malas reseñas, la baja adopción y las fricciones de uso presentes en la plataforma.
+
+\subsubsection{Actividad 1: Focus Group}
+
+\textbf{Descripción.} Sesión grupal moderada por un facilitador, donde varios usuarios discuten sus impresiones sobre el producto en un entorno colaborativo.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item \textbf{Participantes:} se reclutará un grupo de 6 a 8 usuarios con experiencia común usando la plataforma, procurando diversidad en perfiles.
+    \item \textbf{Duración:} la sesión tendrá una duración aproximada de 90 minutos.
+    \item \textbf{Dinámica:} se aplicarán técnicas colaborativas como votaciones silenciosas y lluvia de ideas escrita para asegurar la participación de todos.
+\end{itemize}
+
+\textbf{Justificación.} Se elige porque permite que la experiencia de un usuario detone recuerdos o ideas en otro, enriqueciendo la discusión y ayudando a descubrir expectativas compartidas que podrían no emerger en una entrevista individual.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Guion de la sesión.
+    \item Grabación y transcripción.
+    \item Informe de hallazgos grupales.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Percepciones generales sobre la plataforma.
+    \item Principales puntos de fricción compartidos.
+    \item Expectativas comunes de navegación y compra.
+\end{itemize}
+
+\subsubsection{Actividad 2: Entrevistas individuales}
+
+\textbf{Descripción.} Técnica cualitativa semiestructurada que permite profundizar en las experiencias, frustraciones y motivaciones personales de cada usuario.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item \textbf{Participantes:} se seleccionarán 2 usuarios representativos de la base de clientes.
+    \item \textbf{Duración:} cada entrevista tendrá una duración de 45 a 60 minutos.
+    \item \textbf{Registro:} se grabarán las sesiones para facilitar el análisis posterior.
+\end{itemize}
+
+\textbf{Justificación.} Esta técnica permite obtener una comprensión profunda y sin filtros de la experiencia individual. Además, evita el sesgo del pensamiento grupal y complementa de forma natural al Focus Group.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Transcripciones completas.
+    \item Matriz de hallazgos individuales.
+    \item Síntesis de necesidades y frustraciones.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Motivaciones de compra.
+    \item Dificultades específicas en la interacción.
+    \item Opiniones sobre la claridad, confianza y estética de la plataforma.
+\end{itemize}
+
+% ---------------- FASE 2 ----------------
+\subsection{Fase II. Diseño}
+
+\subsubsection{Objetivo de la fase}
+Transformar los hallazgos del análisis en soluciones tangibles, priorizando la usabilidad, la claridad y la experiencia del usuario.
+
+\subsubsection{Actividad 1: Método 6-3-5 para ideación de interfaces}
+
+\textbf{Descripción.} Técnica estructurada de generación de ideas que permite explorar múltiples soluciones de diseño en sesiones colaborativas.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item \textbf{Participantes:} 6 perfiles clave, entre diseñadores, desarrolladores y stakeholders.
+    \item \textbf{Ejecución:}
+    \begin{enumerate}
+        \item Se presenta el problema a resolver.
+        \item Cada participante escribe 3 ideas iniciales en 5 minutos.
+        \item Las hojas rotan cada 5 minutos para ampliar o mejorar las ideas.
+        \item El proceso se repite hasta completar 5 rotaciones.
+    \end{enumerate}
+    \item \textbf{Resultado:} se obtiene un conjunto amplio de ideas que luego se prioriza por originalidad, viabilidad, impacto y valor para el usuario.
+\end{itemize}
+
+\textbf{Justificación.} Esta técnica permite aprovechar la creatividad del equipo, superar bloqueos mentales y considerar diferentes puntos de vista antes de invertir tiempo en el diseño final.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Set de ideas documentadas.
+    \item Matriz de priorización.
+    \item Bocetos o propuestas iniciales de interfaz.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Alternativas de solución para la interfaz.
+    \item Ideas para reorganizar contenidos y flujos.
+    \item Propuestas visuales y funcionales iniciales.
+\end{itemize}
+
+\subsubsection{Actividad 2: Prototipado interactivo}
+
+\textbf{Descripción.} Creación de un modelo navegable de mediana o alta fidelidad que simula el funcionamiento real de la plataforma.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item Se utilizará Figma para construir un prototipo navegable.
+    \item Se incluirán los flujos críticos identificados en el análisis.
+    \item El prototipo incorporará clics, menús desplegables, navegación entre pantallas y estados visibles de interacción.
+\end{itemize}
+
+\textbf{Justificación.} Permite validar decisiones de diseño con usuarios reales de forma temprana y económica, detectando problemas de usabilidad antes del desarrollo técnico.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Prototipo navegable en Figma.
+    \item Flujo principal de uso.
+    \item Evidencia de interacciones y pantallas clave.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Lógica de navegación.
+    \item Claridad del flujo de compra.
+    \item Reacción de los usuarios frente a la nueva interfaz.
+\end{itemize}
+
+% ---------------- FASE 3 ----------------
+\subsection{Fase III. Evaluación}
+
+\subsubsection{Objetivo de la fase}
+Validar que las soluciones propuestas resuelven los problemas detectados y ofrecen una experiencia de usuario adecuada.
+
+\subsubsection{Actividad 1: Test de usuario}
+
+\textbf{Descripción.} Técnica cualitativa basada en la observación directa de usuarios reales mientras interactúan con el prototipo y ejecutan tareas específicas.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item \textbf{Participantes:} entre 5 y 15 usuarios representativos del público objetivo.
+    \item \textbf{Duración:} cada sesión individual tendrá una duración máxima de 45 minutos.
+    \item \textbf{Tareas:} se propondrán hasta 6 tareas predefinidas.
+    \item \textbf{Registro:} se documentarán interacciones, errores, dudas y comentarios espontáneos.
+\end{itemize}
+
+\textbf{Justificación.} Esta técnica revela problemas concretos de usabilidad desde la perspectiva del usuario final, complementando otras formas de evaluación al capturar dificultades reales de interacción.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Video o registro de sesiones.
+    \item Informe de validación.
+    \item Lista de hallazgos priorizados.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Puntos de frustración en tareas clave.
+    \item Errores recurrentes durante la navegación.
+    \item Percepción de claridad y facilidad de uso.
+\end{itemize}
+
+\subsubsection{Actividad 2: Evaluación heurística}
+
+\textbf{Descripción.} Inspección de usabilidad realizada por expertos, quienes revisan la interfaz con base en principios establecidos de diseño.
+
+\textbf{Cómo se realizará.}
+\begin{itemize}
+    \item \textbf{Evaluadores:} 2 a 3 expertos en usabilidad.
+    \item Cada evaluador analizará el prototipo de forma independiente.
+    \item Se utilizarán las 10 heurísticas de Nielsen como marco de revisión.
+    \item Los hallazgos se consolidarán en un informe unificado.
+\end{itemize}
+
+\textbf{Justificación.} Permite identificar de forma sistemática problemas que los usuarios pueden no verbalizar y complementa el test de usuario con una mirada experta.
+
+\textbf{Entregables.}
+\begin{itemize}
+    \item Informe de problemas de usabilidad.
+    \item Clasificación por gravedad.
+    \item Recomendaciones de mejora.
+\end{itemize}
+
+\textbf{Información esperada.}
+\begin{itemize}
+    \item Errores de consistencia, visibilidad o control.
+    \item Problemas de feedback e identificación de estados.
+    \item Hallazgos de accesibilidad y navegación.
+\end{itemize}
+
+% -------------------------------------------------
+% 5. SÍNTESIS POR FASE
+% -------------------------------------------------
+\section{Información esperada por fase}
+
+\subsection{Fase de análisis}
+A partir del Focus Group y las entrevistas individuales se obtendrá información cualitativa profunda sobre las frustraciones, expectativas y motivaciones de los usuarios al interactuar con Tuboleta. Esto permitirá identificar los puntos críticos de fricción y comprender las causas detrás de la baja satisfacción y la baja adopción.
+
+\subsection{Fase de diseño}
+Del método 6-3-5 se obtendrán soluciones de diseño priorizadas según su viabilidad e impacto. Del prototipado interactivo se obtendrá un modelo tangible y navegable que permita comprobar si los flujos propuestos son lógicos e intuitivos.
+
+\subsection{Fase de evaluación}
+El test de usuario proporcionará datos cualitativos sobre los puntos de frustración y los errores recurrentes. La evaluación heurística entregará un listado de problemas de usabilidad respaldado por principios de diseño reconocidos. En conjunto, ambas técnicas permitirán validar la propuesta desde la perspectiva del usuario y la del experto.
+
+% -------------------------------------------------
+% 6. JUSTIFICACIÓN GLOBAL
+% -------------------------------------------------
+\section{Justificación del plan de trabajo}
+
+Las actividades propuestas fueron seleccionadas porque permiten comprender y rediseñar la plataforma desde una perspectiva realmente centrada en el usuario, abordando las tres etapas esenciales del proceso DCU: análisis, diseño y evaluación.
+
+En la fase de análisis, el Focus Group y las entrevistas individuales se complementan para obtener una visión amplia y profunda de la experiencia del usuario. En la fase de diseño, el método 6-3-5 favorece la exploración creativa y el prototipado interactivo permite materializar y simular las mejores soluciones. En la fase de evaluación, el test de usuario y la evaluación heurística aseguran una validación completa, combinando la observación directa con la revisión experta.
+
+No se priorizan técnicas cuantitativas como A/B testing o análisis de métricas porque estas resultan más apropiadas para etapas posteriores, cuando el sistema ya está implementado y recibe tráfico real. En cambio, las técnicas seleccionadas son las más adecuadas para una etapa temprana de rediseño, en la que el objetivo principal es comprender, diseñar, crear y validar.
+
+% -------------------------------------------------
+% 7. CRONOGRAMA
+% -------------------------------------------------
+\section{Calendario de trabajo}
+
+Para garantizar una ejecución eficiente y transparente, se presenta el siguiente calendario del proyecto. El cronograma organiza las fases y actividades previamente descritas en una línea de tiempo realista, definiendo los entregables para mantener el proyecto enfocado y dentro de los plazos establecidos.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{4pt}
+\small
+\begin{tabular}{|p{2.0cm}|p{2.6cm}|p{3.8cm}|c|c|c|c|c|}
+\hline
+\rowcolor{lightBlue}
+\textbf{Fase} & \textbf{Actividad} & \textbf{Entregable} & \textbf{Iteración} & \textbf{Semana 1} & \textbf{Semana 2} & \textbf{Semana 3} & \textbf{Semana 4} \\
+\hline
+Análisis & Focus Group &
+\makecell[l]{Guion de la sesión\\Grabación y transcripción\\Informe de hallazgos grupales} & 1 & \cellcolor{green!15}\textbf{x} &  &  &  \\
+\hline
+Diseño & Método 6-3-5 &
+\makecell[l]{Set de ideas documentadas\\Matriz de priorización} & 1 & \cellcolor{green!15}\textbf{x} &  &  &  \\
+\hline
+Evaluación & Evaluación heurística &
+\makecell[l]{Informe de problemas de usabilidad} & 1 &  & \cellcolor{green!15}\textbf{x} &  &  \\
+\hline
+Análisis & Entrevistas individuales &
+\makecell[l]{Transcripciones completas} & 2 &  & \cellcolor{green!15}\textbf{x} &  &  \\
+\hline
+Diseño & Prototipado interactivo &
+\makecell[l]{Prototipo navegable en Figma} & 2 &  &  & \cellcolor{green!15}\textbf{x} & \cellcolor{green!15}\textbf{x} \\
+\hline
+Evaluación & Test de usuario &
+\makecell[l]{Video grabaciones de sesiones\\Reporte final de validación} & 2 &  &  &  & \cellcolor{green!15}\textbf{x} \\
+\hline
+\end{tabular}
+\end{table}
+
+% -------------------------------------------------
+% 8. PROTOTIPO
+% -------------------------------------------------
+\section{Prototipo del rediseño}
+
+A continuación se presenta el enlace a la propuesta de rediseño interactivo de la plataforma Tuboleta. Este entregable contempla siete interfaces: página de inicio, registro, inicio de sesión, página de evento seleccionado, página de selección de entradas, página de compra y perfil del usuario.
+
+\textbf{Enlace:} \href{https://www.figma.com/proto/C88F0HHPUFyd8ey9JEPvnq/Redise%C3%B1o---Tuboleta?node-id=56-841&t=byKrhwIDvJZUfqMh-1}{https://www.figma.com/proto/C88F0HHPUFyd8ey9JEPvnq/Redise%C3%B1o---Tuboleta?node-id=56-841\&t=byKrhwIDvJZUfqMh-1}
+
+% -------------------------------------------------
+% 9. CONCLUSIONES
+% -------------------------------------------------
+\section{Conclusiones}
+
+El enfoque de Diseño Centrado en el Usuario permite abordar los problemas de Tuboleta desde una perspectiva más precisa, iterativa y fundamentada en evidencia. Al combinar técnicas de análisis, diseño y evaluación, el plan de trabajo propuesto ofrece una ruta clara para identificar fricciones, proponer soluciones y validar el rediseño con usuarios reales.
+
+La propuesta no se limita a modificar la apariencia de la plataforma, sino que busca mejorar integralmente la experiencia de compra, fortalecer la confianza del usuario y contribuir a una interacción más clara, eficiente y satisfactoria.
+
+% -------------------------------------------------
+% 10. REFERENCIAS
+% -------------------------------------------------
+\section{Referencias}
+
+\begin{thebibliography}{9}
+
+\bibitem{iso9241}
+International Organization for Standardization. (2019).
+\textit{ISO 9241-210: Ergonomics of human-system interaction -- Part 210: Human-centred design for interactive systems}.
+
+\bibitem{nielsen}
+Nielsen, J. (1994).
+\textit{Usability Engineering}.
+Morgan Kaufmann.
+
+\bibitem{krug}
+Krug, S. (2014).
+\textit{Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability}.
+New Riders.
+
+\bibitem{norman}
+Norman, D. A. (2013).
+\textit{The Design of Everyday Things}.
+Basic Books.
+
+\bibitem{figma}
+Figma. (s. f.).
+\textit{Figma: diseño colaborativo de interfaces}.
+\url{https://www.figma.com/}
+
+\end{thebibliography}
+
+\end{document}
